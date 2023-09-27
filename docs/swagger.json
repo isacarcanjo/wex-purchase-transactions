@@ -1,0 +1,116 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Purchase Transaction API Docs",
+        "contact": {
+            "name": "Isac Arcanjo",
+            "url": "https://github.com/isacarcanjo"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:5000",
+    "basePath": "/v1",
+    "paths": {
+        "/transaction": {
+            "post": {
+                "description": "Create transaction",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "transaction"
+                ],
+                "parameters": [
+                    {
+                        "description": "Transaction",
+                        "name": "transaction",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/usecases.StoreTransactionInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/entitys.TransactionEntity"
+                        }
+                    }
+                }
+            }
+        },
+        "/transaction/{id}": {
+            "get": {
+                "description": "Get transaction",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "transaction"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id transaction",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/entitys.TransactionEntity"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "entitys.TransactionEntity": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "purchase_amount": {
+                    "type": "number"
+                },
+                "transaction_date": {
+                    "type": "string"
+                }
+            }
+        },
+        "usecases.StoreTransactionInput": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "purchase_amount": {
+                    "type": "number"
+                },
+                "transaction_date": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
